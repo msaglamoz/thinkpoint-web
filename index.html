@@ -25,6 +25,7 @@
     <meta property="twitter:image" content="https://www.thinkpoint.ee/og-image.png">
 
     <link rel="stylesheet" href="styles.css">
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
 </head>
 
 <body>
@@ -256,39 +257,20 @@
         <div class="modal-content">
             <button id="close-modal" class="close-btn">&times;</button>
 
-            <!-- Step 1: Handshake Animation -->
-            <div id="modal-step-1" class="modal-step">
-                <div class="scanner-container">
-                    <div class="scanner-ring"></div>
-                    <div class="lock-icon">🔒</div>
-                </div>
-                <div class="status-message">Establishing Secure Protocol...</div>
-            </div>
+            <!-- Step 1: Google Sign-In Auth -->
+            <div id="modal-step-auth" class="modal-step">
+                <h3 style="margin-bottom: 20px;">Verify Identity</h3>
+                <p style="color: var(--text-secondary); margin-bottom: 30px;">Please sign in with Google to continue.
+                </p>
 
-            <!-- Step 1b: Phone Input -->
-            <div id="modal-step-phone" class="modal-step hidden">
-                <h3 style="margin-bottom: 20px;">Identity Verification</h3>
-                <p style="color: var(--text-secondary); margin-bottom: 20px;">Please enter your mobile number for
-                    Two-Factor Authentication (2FA).</p>
-                <div class="form-group">
-                    <input type="tel" id="phone-input" placeholder="+1 (555) 000-0000"
-                        style="text-align: center; font-size: 1.2rem;">
+                <!-- Google Sign-In Button Container -->
+                <div id="g_id_onload"
+                    data-client_id="672161318698-so1c08chj5cvvm4idjvls1mpdu1kna64.apps.googleusercontent.com"
+                    data-callback="handleCredentialResponse" data-auto_prompt="false">
                 </div>
-                <button id="send-otp-btn" class="btn btn-primary" style="width: 100%;">Send Verification Code</button>
-            </div>
-
-            <!-- Step 1c: OTP Input -->
-            <div id="modal-step-otp" class="modal-step hidden">
-                <h3 style="margin-bottom: 20px;">Enter Verification Code</h3>
-                <p style="color: var(--text-secondary); margin-bottom: 20px;">Enter the 6-digit code sent to your
-                    device.</p>
-                <div class="form-group">
-                    <input type="text" id="otp-input" placeholder="• • • • • •" maxlength="6"
-                        style="text-align: center; font-size: 1.5rem; letter-spacing: 10px;">
+                <div class="g_id_signin" data-type="standard" data-size="large" data-theme="outline"
+                    data-text="sign_in_with" data-shape="pill" data-logo_alignment="left">
                 </div>
-                <button id="verify-otp-btn" class="btn btn-primary" style="width: 100%;">Verify Identity</button>
-                <p class="status-message" id="otp-status"
-                    style="margin-top: 10px; font-size: 0.9rem; min-height: 20px;"></p>
             </div>
 
             <!-- Step 2: Contact Form -->

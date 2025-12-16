@@ -31,41 +31,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Secure Contact Modal Logic
     const contactBtn = document.querySelector('a[href="#contact"]');
-    // Also target the button in the hero section 
     const heroContactBtn = document.querySelector('.hero .btn-secondary');
-    // And the footer CTA button
     const footerCtaBtn = document.querySelector('.footer-cta button');
 
     const modal = document.getElementById('contact-modal');
     const closeBtn = document.getElementById('close-modal');
-    const step1 = document.getElementById('modal-step-1');
+
+    // Steps
+    const stepAuth = document.getElementById('modal-step-auth');
     const step2 = document.getElementById('modal-step-2');
-    const statusMsg = document.querySelector('.status-message');
+
+    // Elements
+    const statusMsg = document.querySelector('#modal-step-auth .status-message'); // Reuse if needed
 
     function openModal(e) {
         if (e) e.preventDefault();
         modal.classList.add('active');
+        resetModal();
 
-        // Reset State
-        step1.classList.remove('hidden');
-        step2.classList.add('hidden');
-        statusMsg.innerText = "Establishing Secure Protocol...";
-        statusMsg.style.color = "var(--accent-cyan)";
-
-        // Animation Sequence
-        setTimeout(() => {
-            statusMsg.innerText = "Verifying Identity...";
-        }, 800);
-
-        setTimeout(() => {
-            statusMsg.innerText = "Channel Encrypted.";
-            statusMsg.style.color = "#10b981"; // Green
-        }, 1600);
-
-        setTimeout(() => {
-            step1.classList.add('hidden');
-            step2.classList.remove('hidden');
-        }, 2000);
+        // Show Auth Step
+        if (stepAuth) stepAuth.classList.remove('hidden');
     }
 
     function closeModal() {
@@ -73,14 +58,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Attach listeners
-    // Note: The footer CTA button has an inline onclick which we should override
     if (footerCtaBtn) {
-        footerCtaBtn.onclick = null; // Clear inline handler
+        footerCtaBtn.onclick = null;
         footerCtaBtn.addEventListener('click', openModal);
     }
 
-    // The hero contact button links to #contact section, we can hijack it or let it scroll then open?
-    // Let's just open the modal for any button we think is 'Contact'
     document.querySelectorAll('a[href="#contact"]').forEach(btn => {
         btn.addEventListener('click', openModal);
     });
@@ -98,11 +80,12 @@ document.addEventListener('DOMContentLoaded', () => {
         event.preventDefault();
         const data = new FormData(event.target);
 
-        statusMsg.innerText = "Encrypting & Transmitting...";
+        // Optional: Update UI to show sending state
+        const submitBtn = form.querySelector('button[type="submit"]');
+        const originalBtnText = submitBtn.innerText;
+        submitBtn.innerText = "Encrypting & Transmitting...";
+        submitBtn.disabled = true;
 
-        // Use Fetch to send to Formspree
-        // IMPORTANT: You will need to register your email on Formspree to verify this endpoint
-        // or get a unique form ID (e.g. formspree.io/f/xyza...)
         fetch("https://formspree.io/f/xrbnvyee", {
             method: form.method,
             body: data,
@@ -128,10 +111,63 @@ document.addEventListener('DOMContentLoaded', () => {
         }).catch(error => {
             formStatus.innerText = "Connection Failed.";
             formStatus.style.color = "red";
+        }).finally(() => {
+            submitBtn.innerText = originalBtnText;
+            submitBtn.disabled = false;
         });
     }
 
     if (form) {
         form.addEventListener("submit", handleSubmit);
+    }
+
+    // Google Sign-In Callback
+    // Must be on window scope for the data-callback attribute to find it
+    window.handleCredentialResponse = function (response) {
+        if (response.credential) {
+            // Decode JWT to get user info
+            const responsePayload = decodeJwtResponse(response.credential);
+
+            // console.log("ID: " + responsePayload.sub);
+            // console.log('Full Name: ' + responsePayload.name);
+            // console.log('Given Name: ' + responsePayload.given_name);
+            // console.log('Family Name: ' + responsePayload.family_name);
+            // console.log("Image URL: " + responsePayload.picture);
+            // console.log("Email: " + responsePayload.email);
+
+            // Transition to Form
+            if (stepAuth) stepAuth.classList.add('hidden');
+            if (step2) step2.classList.remove('hidden');
+
+            // Pre-fill Email
+            const emailInput = form.querySelector('input[name="email"]');
+            if (emailInput) {
+                emailInput.value = responsePayload.email;
+                emailInput.readOnly = true; // Lock it since it's verified
+                emailInput.style.opacity = "0.7";
+            }
+        }
+    };
+
+    function decodeJwtResponse(token) {
+        var base64Url = token.split('.')[1];
+        var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+        var jsonPayload = decodeURIComponent(window.atob(base64).split('').map(function (c) {
+            return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+        }).join(''));
+
+        return JSON.parse(jsonPayload);
+    }
+
+    // Reset helper
+    function resetModal() {
+        if (stepAuth) stepAuth.classList.add('hidden');
+        if (step2) step2.classList.add('hidden');
+
+        // Clear form status
+        if (formStatus) formStatus.innerText = '';
+
+        // Reset steps based on openModal logic (which unhides stepAuth)
+        // This function just hides everything to ensure a clean slate
     }
 });
