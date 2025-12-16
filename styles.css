@@ -483,6 +483,13 @@ footer {
     transition: opacity 0.4s ease;
 }
 
+.google-signin-wrapper {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
 .modal-overlay.active {
     opacity: 1;
     pointer-events: all;
