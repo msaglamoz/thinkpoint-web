@@ -127,6 +127,19 @@ header {
 }
 
 /* Hero Section */
+/* Navigation */
+.nav-link {
+    color: var(--text-secondary);
+    text-decoration: none;
+    margin-right: 20px;
+    font-size: 0.95rem;
+    transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+    color: var(--text-primary);
+}
+
 .hero {
     min-height: 100vh;
     display: flex;
