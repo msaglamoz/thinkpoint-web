@@ -265,6 +265,32 @@
                 <div class="status-message">Establishing Secure Protocol...</div>
             </div>
 
+            <!-- Step 1b: Phone Input -->
+            <div id="modal-step-phone" class="modal-step hidden">
+                <h3 style="margin-bottom: 20px;">Identity Verification</h3>
+                <p style="color: var(--text-secondary); margin-bottom: 20px;">Please enter your mobile number for
+                    Two-Factor Authentication (2FA).</p>
+                <div class="form-group">
+                    <input type="tel" id="phone-input" placeholder="+1 (555) 000-0000"
+                        style="text-align: center; font-size: 1.2rem;">
+                </div>
+                <button id="send-otp-btn" class="btn btn-primary" style="width: 100%;">Send Verification Code</button>
+            </div>
+
+            <!-- Step 1c: OTP Input -->
+            <div id="modal-step-otp" class="modal-step hidden">
+                <h3 style="margin-bottom: 20px;">Enter Verification Code</h3>
+                <p style="color: var(--text-secondary); margin-bottom: 20px;">Enter the 6-digit code sent to your
+                    device.</p>
+                <div class="form-group">
+                    <input type="text" id="otp-input" placeholder="• • • • • •" maxlength="6"
+                        style="text-align: center; font-size: 1.5rem; letter-spacing: 10px;">
+                </div>
+                <button id="verify-otp-btn" class="btn btn-primary" style="width: 100%;">Verify Identity</button>
+                <p class="status-message" id="otp-status"
+                    style="margin-top: 10px; font-size: 0.9rem; min-height: 20px;"></p>
+            </div>
+
             <!-- Step 2: Contact Form -->
             <div id="modal-step-2" class="modal-step hidden">
                 <div class="success-icon">✓</div>
