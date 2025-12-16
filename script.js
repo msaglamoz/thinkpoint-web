@@ -121,43 +121,7 @@ document.addEventListener('DOMContentLoaded', () => {
         form.addEventListener("submit", handleSubmit);
     }
 
-    // Google Sign-In Callback
-    // Must be on window scope for the data-callback attribute to find it
-    window.handleCredentialResponse = function (response) {
-        if (response.credential) {
-            // Decode JWT to get user info
-            const responsePayload = decodeJwtResponse(response.credential);
 
-            // console.log("ID: " + responsePayload.sub);
-            // console.log('Full Name: ' + responsePayload.name);
-            // console.log('Given Name: ' + responsePayload.given_name);
-            // console.log('Family Name: ' + responsePayload.family_name);
-            // console.log("Image URL: " + responsePayload.picture);
-            // console.log("Email: " + responsePayload.email);
-
-            // Transition to Form
-            if (stepAuth) stepAuth.classList.add('hidden');
-            if (step2) step2.classList.remove('hidden');
-
-            // Pre-fill Email
-            const emailInput = form.querySelector('input[name="email"]');
-            if (emailInput) {
-                emailInput.value = responsePayload.email;
-                emailInput.readOnly = true; // Lock it since it's verified
-                emailInput.style.opacity = "0.7";
-            }
-        }
-    };
-
-    function decodeJwtResponse(token) {
-        var base64Url = token.split('.')[1];
-        var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-        var jsonPayload = decodeURIComponent(window.atob(base64).split('').map(function (c) {
-            return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
-        }).join(''));
-
-        return JSON.parse(jsonPayload);
-    }
 
     // Reset helper
     function resetModal() {
@@ -171,3 +135,40 @@ document.addEventListener('DOMContentLoaded', () => {
         // This function just hides everything to ensure a clean slate
     }
 });
+
+// Google Sign-In Callback (Global Scope)
+window.handleCredentialResponse = function (response) {
+    if (response.credential) {
+        // Decode JWT to get user info
+        const responsePayload = decodeJwtResponse(response.credential);
+
+        // UI Elements (Dynamic selection to ensure availability)
+        const stepAuth = document.getElementById('modal-step-auth');
+        const step2 = document.getElementById('modal-step-2');
+        const form = document.getElementById('contact-form');
+
+        // Transition to Form
+        if (stepAuth) stepAuth.classList.add('hidden');
+        if (step2) step2.classList.remove('hidden');
+
+        // Pre-fill Email
+        if (form) {
+            const emailInput = form.querySelector('input[name="email"]');
+            if (emailInput) {
+                emailInput.value = responsePayload.email;
+                emailInput.readOnly = true; // Lock it since it's verified
+                emailInput.style.opacity = "0.7";
+            }
+        }
+    }
+};
+
+function decodeJwtResponse(token) {
+    var base64Url = token.split('.')[1];
+    var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+    var jsonPayload = decodeURIComponent(window.atob(base64).split('').map(function (c) {
+        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+    }).join(''));
+
+    return JSON.parse(jsonPayload);
+}
