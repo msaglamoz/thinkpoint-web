@@ -54,3 +54,20 @@ To exercise these rights, please contact our Data Protection Officer at **privac
 
 ## 7. Security of Your Data
 We use administrative, technical, and physical security measures (including TLS encryption and SOC2-compliant data centers) to help protect your personal information. While we have taken reasonable steps to secure the personal information you provide to us, please be aware that despite our efforts, no security measures are perfect or impenetrable.
+
+## 8. Data Controller & Contact Information
+For the purposes of GDPR, the Data Controller is:
+
+**ThinkPoint OÜ**
+Registry Code: 12345678 (Pending)
+Harju maakond, Tallinn,
+Estonia
+
+If you have questions or comments about this policy, you may email us at **privacy@thinkpoint.ee** or by post to the address above.
+
+## 9. Right to Complain
+If you believe that we have not processed your data in accordance with the law, you have the right to lodge a complaint with the **Estonian Data Protection Inspectorate (Andmekaitse Inspektsioon)**:
+
+*   **Website:** [www.aki.ee](https://www.aki.ee)
+*   **Email:** info@aki.ee
+*   **Address:** Tatari 39, 10134 Tallinn, Estonia
