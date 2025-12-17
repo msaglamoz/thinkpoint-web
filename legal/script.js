@@ -250,7 +250,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 </div>
                 <div class="archive-item" style="opacity: 0.6">
                     <h3>January 1, 2023</h3>
-                    <p>Initial release of Thinkpoint Terms.</p>
+                    <p>Initial release of ThinkPoint Terms.</p>
                     <button onclick="alert('Restore logic would go here')">View</button>
                     <button onclick="alert('Diff logic would go here')">Compare</button>
                 </div>
