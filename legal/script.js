@@ -357,4 +357,47 @@ document.addEventListener('DOMContentLoaded', async () => {
         await originalRender();
     }
 
+    // --- Cookie Consent Logic ---
+    const cookieBanner = document.getElementById('cookie-banner');
+    const acceptBtn = document.getElementById('cookie-accept');
+    const rejectBtn = document.getElementById('cookie-reject');
+
+    if (!localStorage.getItem('cookieConsent')) {
+        setTimeout(() => {
+            if (cookieBanner) cookieBanner.classList.add('visible');
+        }, 1500);
+    }
+
+    if (acceptBtn) {
+        acceptBtn.addEventListener('click', () => {
+            localStorage.setItem('cookieConsent', 'accepted');
+            cookieBanner.classList.remove('visible');
+        });
+    }
+
+    if (rejectBtn) {
+        rejectBtn.addEventListener('click', () => {
+            localStorage.setItem('cookieConsent', 'rejected');
+            cookieBanner.classList.remove('visible');
+        });
+    }
+
+    // Handle "Read Policy" click in banner
+    const cookieLink = cookieBanner ? cookieBanner.querySelector('a') : null;
+    if (cookieLink) {
+        cookieLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            const section = e.target.getAttribute('data-section');
+            if (section) {
+                state.currentSection = section;
+                updateURL();
+                renderContent();
+                ui.navLinks.forEach(l => {
+                    l.classList.remove('active');
+                    if (l.getAttribute('data-section') === section) l.classList.add('active');
+                });
+            }
+        });
+    }
+
 });
