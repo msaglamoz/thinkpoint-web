@@ -1,0 +1,451 @@
+/* Thinkpoint Legal Hub - Dark Mode Design (Google Layout Structure) */
+
+:root {
+    /* Inherited from Main Site */
+    --bg-color: #050505;
+    --card-bg: rgba(255, 255, 255, 0.03);
+    --card-border: rgba(255, 255, 255, 0.08);
+    --text-primary: #ffffff;
+    --text-secondary: #a1a1aa;
+    --accent-blue: #3b82f6;
+    --accent-purple: #8b5cf6;
+    --accent-cyan: #06b6d4;
+
+    /* Layout Specifics */
+    --sidebar-width: 280px;
+    --sidebar-bg: #0a0a0a;
+    /* Slightly lighter than main bg */
+}
+
+/* Reset & Base */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'Outfit', sans-serif;
+    color: var(--text-primary);
+    margin-bottom: 0.5em;
+}
+
+/* Layout Grid */
+.legal-layout {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* Sidebar */
+.sidebar {
+    width: var(--sidebar-width);
+    background: var(--sidebar-bg);
+    height: 100vh;
+    position: sticky;
+    top: 0;
+    overflow-y: auto;
+    border-right: 1px solid var(--card-border);
+    padding: 32px 0 0 32px;
+    flex-shrink: 0;
+}
+
+.brand-section {
+    margin-bottom: 40px;
+    padding-right: 32px;
+}
+
+.brand-logo {
+    font-family: 'Outfit', sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--text-primary);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    letter-spacing: -0.02em;
+}
+
+/* Product Selector */
+.product-selector-wrapper {
+    margin-right: 32px;
+    margin-bottom: 40px;
+}
+
+.product-selector-wrapper label {
+    display: block;
+    font-size: 11px;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    letter-spacing: 0.8px;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.product-select {
+    width: 100%;
+    padding: 12px 16px;
+    border-radius: 12px;
+    border: 1px solid var(--card-border);
+    background-color: var(--card-bg);
+    color: var(--text-primary);
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    appearance: none;
+    /* Custom dropdown arrow would go here */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%23a1a1aa' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+}
+
+.product-select:hover {
+    border-color: var(--accent-blue);
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.product-select:focus {
+    outline: none;
+    border-color: var(--accent-cyan);
+    box-shadow: 0 0 15px rgba(6, 182, 212, 0.2);
+}
+
+/* Navigation Links */
+.nav-group {
+    margin-bottom: 32px;
+}
+
+.nav-group h3 {
+    font-size: 11px;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    letter-spacing: 1px;
+    margin-bottom: 16px;
+    font-weight: 700;
+    font-family: 'Inter', sans-serif;
+    /* No padding-left unlike Google light theme, cleaner align */
+}
+
+.nav-links {
+    list-style: none;
+}
+
+.nav-links li {
+    margin-bottom: 4px;
+}
+
+.nav-links li a {
+    display: block;
+    padding: 10px 16px 10px 0;
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    border-radius: 0;
+    margin-right: 0;
+    transition: all 0.2s;
+    border-left: 2px solid transparent;
+    padding-left: 16px;
+    /* Indent content */
+}
+
+.nav-links li a:hover {
+    color: var(--text-primary);
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.03) 0%, transparent 100%);
+}
+
+.nav-links li a.active {
+    color: var(--accent-cyan);
+    background: linear-gradient(90deg, rgba(6, 182, 212, 0.1) 0%, transparent 100%);
+    border-left-color: var(--accent-cyan);
+}
+
+/* Main Content */
+.main-content {
+    flex-grow: 1;
+    max-width: 960px;
+    /* Wider for enterprise feel */
+    padding: 64px 80px 120px 80px;
+    margin: 0;
+    position: relative;
+}
+
+/* Background Effect from V2 */
+.main-content::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: var(--sidebar-width);
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at top right, rgba(59, 130, 246, 0.05), transparent 40%);
+    pointer-events: none;
+    z-index: -1;
+}
+
+.content-header {
+    margin-bottom: 64px;
+    border-bottom: 1px solid var(--card-border);
+    padding-bottom: 32px;
+}
+
+.content-header h1 {
+    font-size: 48px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    background: linear-gradient(135deg, #fff 0%, #a1a1aa 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.last-updated {
+    color: var(--text-secondary);
+    font-size: 14px;
+    font-family: 'Inter', monospace;
+}
+
+#diff-view-btn {
+    margin-top: 24px;
+    background: transparent;
+    border: 1px solid var(--accent-blue);
+    color: var(--accent-blue);
+    padding: 8px 16px;
+    border-radius: 50px;
+    cursor: pointer;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+#diff-view-btn:hover {
+    background: var(--accent-blue);
+    color: white;
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.4);
+}
+
+/* Typography for Generated Content */
+#legal-doc-container h1 {
+    font-size: 32px;
+    margin: 56px 0 24px;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+#legal-doc-container h2 {
+    font-size: 24px;
+    margin: 40px 0 20px;
+    font-weight: 600;
+    color: #e4e4e7;
+}
+
+#legal-doc-container h3 {
+    font-size: 18px;
+    margin: 32px 0 16px;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+#legal-doc-container p {
+    margin-bottom: 24px;
+    color: #d4d4d8;
+    font-size: 16px;
+    line-height: 1.7;
+}
+
+#legal-doc-container ul,
+#legal-doc-container ol {
+    margin-bottom: 24px;
+    padding-left: 24px;
+    color: #d4d4d8;
+}
+
+#legal-doc-container li {
+    margin-bottom: 12px;
+}
+
+#legal-doc-container strong {
+    font-weight: 600;
+    color: var(--accent-cyan);
+}
+
+#legal-doc-container hr {
+    border: 0;
+    border-top: 1px solid var(--card-border);
+    margin: 60px 0;
+}
+
+/* Summary Box - Thinkpoint Style */
+.summary-box {
+    background: rgba(6, 182, 212, 0.05);
+    /* Cyan tint */
+    border: 1px solid rgba(6, 182, 212, 0.2);
+    border-radius: 16px;
+    padding: 24px;
+    margin: 32px 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.summary-box::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: var(--accent-cyan);
+}
+
+.summary-title {
+    font-weight: 700;
+    color: var(--accent-cyan);
+    margin-bottom: 8px;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.summary-title::before {
+    content: '~ ';
+    /* Icon placeholder */
+}
+
+.summary-text {
+    font-size: 15px !important;
+    color: #e4e4e7 !important;
+    margin: 0 !important;
+}
+
+/* Footer */
+footer {
+    margin-top: 80px;
+    border-top: 1px solid var(--card-border);
+    padding-top: 32px;
+    color: var(--text-secondary);
+    font-size: 13px;
+    text-align: center;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .legal-layout {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+        padding: 24px;
+        border-right: none;
+        border-bottom: 1px solid var(--card-border);
+    }
+
+    .product-selector-wrapper {
+        margin-right: 0;
+    }
+
+    .nav-links li a {
+        border-left: none;
+        padding-left: 0;
+        border-bottom: 2px solid transparent;
+        display: inline-block;
+        margin-right: 16px;
+    }
+
+    .nav-links li a.active {
+        background: none;
+        border-bottom-color: var(--accent-cyan);
+    }
+
+    .main-content {
+        padding: 40px 24px;
+    }
+
+    .main-content::before {
+        left: 0;
+    }
+
+    .content-header h1 {
+        font-size: 36px;
+    }
+}
+
+/* Table of Contents (Right Sidebar) */
+.toc-sidebar {
+    width: 240px;
+    padding: 64px 24px 0 0;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+    font-size: 13px;
+    border-left: 1px solid var(--card-border);
+    margin-left: auto;
+    /* Push to right if flex */
+    display: none;
+    /* Hidden by default until JS populates it */
+}
+
+@media (min-width: 992px) {
+    .toc-sidebar {
+        display: block;
+    }
+
+    /* Adjust main content max-width to accomodate TOC */
+    .main-content {
+        max-width: 800px;
+    }
+}
+
+.toc-sidebar h3 {
+    text-transform: uppercase;
+    font-size: 11px;
+    color: var(--text-secondary);
+    margin-bottom: 16px;
+    letter-spacing: 0.8px;
+    font-weight: 600;
+}
+
+.toc-sidebar ul {
+    list-style: none;
+    padding: 0;
+    border-left: 2px solid rgba(255, 255, 255, 0.05);
+}
+
+.toc-sidebar li {
+    margin: 0;
+}
+
+.toc-sidebar a {
+    display: block;
+    padding: 6px 0 6px 16px;
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: all 0.2s;
+    border-left: 2px solid transparent;
+    margin-left: -2px;
+    /* Overlap border */
+}
+
+.toc-sidebar a:hover {
+    color: var(--text-primary);
+    border-left-color: var(--text-secondary);
+}

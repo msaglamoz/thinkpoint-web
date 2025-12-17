@@ -1,0 +1,18 @@
+{
+    "products": {
+        "thinkpoint": {
+            "name": "Thinkpoint (Global)",
+            "sections": [
+                { "id": "privacy", "title": "Privacy Policy", "files": ["global_privacy.md"] },
+                { "id": "terms", "title": "Terms of Service", "files": ["global_terms.md"] }
+            ]
+        },
+        "copoint": {
+            "name": "Copoint",
+            "sections": [
+                { "id": "privacy", "title": "Privacy Policy", "files": ["global_privacy.md", "copoint_special.md"] },
+                { "id": "terms", "title": "Terms of Service", "files": ["global_terms.md", "copoint_terms.md"] }
+            ]
+        }
+    }
+}
