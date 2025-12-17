@@ -319,16 +319,38 @@ document.addEventListener('DOMContentLoaded', async () => {
     const acceptBtn = document.getElementById('cookie-accept');
     const rejectBtn = document.getElementById('cookie-reject');
 
-    if (!localStorage.getItem('cookieConsent')) {
+    // GA4 Configuration (Share same ID)
+    const GA_MEASUREMENT_ID = 'G-XXXXXXXXXX';
+
+    function enableAnalytics() {
+        if (document.querySelector(`script[src*="googletagmanager.com"]`)) return;
+
+        const script = document.createElement('script');
+        script.src = `https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`;
+        script.async = true;
+        document.head.appendChild(script);
+
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', GA_MEASUREMENT_ID);
+    }
+
+    const currentConsent = localStorage.getItem('cookieConsent');
+
+    if (!currentConsent) {
         setTimeout(() => {
             if (cookieBanner) cookieBanner.classList.add('visible');
         }, 1500);
+    } else if (currentConsent === 'accepted') {
+        enableAnalytics();
     }
 
     if (acceptBtn) {
         acceptBtn.addEventListener('click', () => {
             localStorage.setItem('cookieConsent', 'accepted');
             cookieBanner.classList.remove('visible');
+            enableAnalytics();
         });
     }
 

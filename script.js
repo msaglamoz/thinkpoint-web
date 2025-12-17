@@ -163,23 +163,46 @@ document.addEventListener('DOMContentLoaded', () => {
     const acceptBtn = document.getElementById('cookie-accept');
     const rejectBtn = document.getElementById('cookie-reject');
 
+    // GA4 Configuration
+    const GA_MEASUREMENT_ID = 'G-XXXXXXXXXX'; // Replace with actual ID if available
+
+    function enableAnalytics() {
+        // Prevent duplicate injection
+        if (document.querySelector(`script[src*="googletagmanager.com"]`)) return;
+
+        console.log("Analytics Enabled 🟢");
+
+        // Inject GTag Script
+        const script = document.createElement('script');
+        script.src = `https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`;
+        script.async = true;
+        document.head.appendChild(script);
+
+        // Initialize GTag
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', GA_MEASUREMENT_ID);
+    }
+
     // Check if user has already made a choice
-    if (!localStorage.getItem('cookieConsent')) {
+    const currentConsent = localStorage.getItem('cookieConsent');
+
+    if (!currentConsent) {
         // Show banner after a short delay
         setTimeout(() => {
             if (cookieBanner) cookieBanner.classList.add('visible');
         }, 1500);
-    } else {
-        // Optional: If accepted, load analytics scripts here if not already loaded by default
-        // const consent = localStorage.getItem('cookieConsent');
-        // if (consent === 'accepted') { enableAnalytics(); }
+    } else if (currentConsent === 'accepted') {
+        // Already accepted, load analytics immediately
+        enableAnalytics();
     }
 
     if (acceptBtn) {
         acceptBtn.addEventListener('click', () => {
             localStorage.setItem('cookieConsent', 'accepted');
             cookieBanner.classList.remove('visible');
-            // enableAnalytics();
+            enableAnalytics();
         });
     }
 
