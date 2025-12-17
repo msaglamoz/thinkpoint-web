@@ -158,6 +158,37 @@ document.addEventListener('DOMContentLoaded', () => {
         // Clear form status
         if (formStatus) formStatus.innerText = '';
     }
+    // --- Cookie Consent Logic ---
+    const cookieBanner = document.getElementById('cookie-banner');
+    const acceptBtn = document.getElementById('cookie-accept');
+    const rejectBtn = document.getElementById('cookie-reject');
+
+    // Check if user has already made a choice
+    if (!localStorage.getItem('cookieConsent')) {
+        // Show banner after a short delay
+        setTimeout(() => {
+            if (cookieBanner) cookieBanner.classList.add('visible');
+        }, 1500);
+    } else {
+        // Optional: If accepted, load analytics scripts here if not already loaded by default
+        // const consent = localStorage.getItem('cookieConsent');
+        // if (consent === 'accepted') { enableAnalytics(); }
+    }
+
+    if (acceptBtn) {
+        acceptBtn.addEventListener('click', () => {
+            localStorage.setItem('cookieConsent', 'accepted');
+            cookieBanner.classList.remove('visible');
+            // enableAnalytics();
+        });
+    }
+
+    if (rejectBtn) {
+        rejectBtn.addEventListener('click', () => {
+            localStorage.setItem('cookieConsent', 'rejected');
+            cookieBanner.classList.remove('visible');
+        });
+    }
 });
 
 // Google Sign-In Callback (Global Scope)
