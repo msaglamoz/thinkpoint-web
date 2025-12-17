@@ -59,8 +59,10 @@ We use administrative, technical, and physical security measures (including TLS 
 For the purposes of GDPR, the Data Controller is:
 
 **ThinkPoint OÜ**
-Registry Code: 12345678 (Pending)
-Harju maakond, Tallinn,
+Registry Code: 17131887
+Veskiposti 2-1002
+Tallinn 10138
+Harju maakond
 Estonia
 
 If you have questions or comments about this policy, you may email us at **privacy@thinkpoint.ee** or by post to the address above.
