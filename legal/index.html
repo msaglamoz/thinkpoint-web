@@ -27,35 +27,43 @@
                 <a href="/" class="brand-logo">
                     ThinkPoint. Policy
                 </a>
+                <button id="mobile-menu-toggle" class="mobile-menu-toggle" aria-label="Toggle Menu">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M3 12h18M3 6h18M3 18h18" />
+                    </svg>
+                </button>
             </div>
 
-            <!-- Product Selector -->
-            <div class="product-selector-wrapper">
-                <label for="product-select"
-                    style="font-size: 12px; font-weight: 500; color: #5f6368; display: block; margin-bottom: 8px;">Product
-                    Scope</label>
-                <select id="product-select" class="product-select">
-                    <!-- Populated by JS -->
-                </select>
+            <!-- Collapsible Wrapper for Mobile -->
+            <div id="sidebar-content" class="sidebar-content-wrapper">
+                <!-- Product Selector -->
+                <div class="product-selector-wrapper">
+                    <label for="product-select"
+                        style="font-size: 12px; font-weight: 500; color: #5f6368; display: block; margin-bottom: 8px;">Product
+                        Scope</label>
+                    <select id="product-select" class="product-select">
+                        <!-- Populated by JS -->
+                    </select>
+                </div>
+
+                <nav>
+                    <div class="nav-group">
+                        <h3>General</h3>
+                        <ul class="nav-links">
+                            <li><a href="#" data-section="privacy" class="active">Privacy Policy</a></li>
+                            <li><a href="#" data-section="terms">Terms of Service</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="nav-group">
+                        <h3>Resources</h3>
+                        <ul class="nav-links">
+                            <li><a href="#" data-section="cookies">Cookie Policy</a></li>
+                            <li><a href="#" data-section="archive">Archive</a></li>
+                        </ul>
+                    </div>
+                </nav>
             </div>
-
-            <nav>
-                <div class="nav-group">
-                    <h3>General</h3>
-                    <ul class="nav-links">
-                        <li><a href="#" data-section="privacy" class="active">Privacy Policy</a></li>
-                        <li><a href="#" data-section="terms">Terms of Service</a></li>
-                    </ul>
-                </div>
-
-                <div class="nav-group">
-                    <h3>Resources</h3>
-                    <ul class="nav-links">
-                        <li><a href="#" data-section="cookies">Cookie Policy</a></li>
-                        <li><a href="#" data-section="archive">Archive</a></li>
-                    </ul>
-                </div>
-            </nav>
         </aside>
 
         <!-- Main Content Area -->

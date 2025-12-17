@@ -75,12 +75,28 @@ document.addEventListener('DOMContentLoaded', async () => {
         renderContent();
     });
 
+    // Mobile Menu Toggle
+    const mobileToggle = document.getElementById('mobile-menu-toggle');
+    const sidebar = document.querySelector('.sidebar');
+
+    if (mobileToggle) {
+        mobileToggle.addEventListener('click', () => {
+            sidebar.classList.toggle('menu-open');
+            // Rotate icon or change path if desired, keep simple for now
+        });
+    }
+
     // Nav Click
     ui.navLinks.forEach(link => {
         link.addEventListener('click', (e) => {
             e.preventDefault();
             const section = e.target.getAttribute('data-section');
             if (!section) return; // Ignore non-section links
+
+            // Close mobile menu on selection
+            if (sidebar.classList.contains('menu-open')) {
+                sidebar.classList.remove('menu-open');
+            }
 
             // Remove active class from all
             ui.navLinks.forEach(l => l.classList.remove('active'));
