@@ -495,9 +495,8 @@ footer {
 }
 
 @media (min-width: 992px) {
-
-    /* .toc-sidebar display is now managed by JS based on content */
     .toc-sidebar {
+        display: block;
         border-left: 1px solid var(--card-border);
     }
 }
