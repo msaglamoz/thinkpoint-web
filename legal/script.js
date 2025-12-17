@@ -311,6 +311,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     renderContent = async function () {
         if (state.currentSection === 'archive') {
             renderArchive();
+            generateTOC();
             return;
         }
         await originalRender();
