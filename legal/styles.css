@@ -482,37 +482,36 @@ footer {
 /* Table of Contents (Right Sidebar) */
 .toc-sidebar {
     width: 240px;
-    padding: 64px 24px 0 0;
+    padding: 64px 0 0 24px;
+    /* Move padding-left to content side */
     position: sticky;
     top: 0;
     height: 100vh;
     overflow-y: auto;
     font-size: 13px;
-    border-left: 1px solid var(--card-border);
     margin-left: auto;
-    /* Push to right if flex */
     display: none;
-    /* Hidden by default until JS populates it */
+    /* Hidden by default, toggled by JS/Media Query */
 }
 
 @media (min-width: 992px) {
-    .toc-sidebar {
-        display: block;
-    }
 
-    /* Adjust main content max-width to accomodate TOC */
-    .main-content {
-        max-width: 800px;
+    /* .toc-sidebar display is now managed by JS based on content */
+    .toc-sidebar {
+        border-left: 1px solid var(--card-border);
     }
 }
 
 .toc-sidebar h3 {
     text-transform: uppercase;
     font-size: 11px;
-    color: var(--text-secondary);
-    margin-bottom: 16px;
-    letter-spacing: 0.8px;
-    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 20px;
+    letter-spacing: 1.2px;
+    font-weight: 700;
+    padding-left: 16px;
+    /* Align with links */
+    opacity: 0.8;
 }
 
 .toc-sidebar ul {

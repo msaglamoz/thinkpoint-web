@@ -75,6 +75,60 @@ document.addEventListener('DOMContentLoaded', async () => {
         renderContent();
     });
 
+    // Generate Table of Contents
+    function generateTOC() {
+        const tocContainer = document.getElementById('toc-list');
+        const tocSidebar = document.querySelector('.toc-sidebar');
+
+        // Clear previous TOC
+        if (tocContainer) tocContainer.innerHTML = '';
+
+        const headers = ui.container.querySelectorAll('h2');
+
+        // Hide TOC if no headers found
+        if (!headers || headers.length === 0) {
+            if (tocSidebar) tocSidebar.style.display = 'none';
+            return;
+        }
+
+        // Show TOC if headers exist
+        if (tocSidebar) {
+            // Only show if desktop (media query handles this via CSS usually, but we can enforce)
+            if (window.innerWidth >= 992) {
+                tocSidebar.style.display = 'block';
+            } else {
+                tocSidebar.style.display = 'none'; // Keep hidden on mobile
+            }
+        }
+
+        headers.forEach((header, index) => {
+            // Create ID if missing
+            if (!header.id) {
+                header.id = 'section-' + index;
+            }
+
+            const li = document.createElement('li');
+            const a = document.createElement('a');
+            a.href = '#' + header.id;
+            a.textContent = header.textContent || header.innerText; // Fallback
+
+            // Clean up text if it has markdown symbols leading (rare but possible)
+            a.textContent = a.textContent.replace(/^#+\s+/, '');
+
+            a.addEventListener('click', (e) => {
+                e.preventDefault();
+                document.getElementById(header.id).scrollIntoView({
+                    behavior: 'smooth'
+                });
+                // Update URL hash
+                history.pushState(null, null, '#' + header.id);
+            });
+
+            li.appendChild(a);
+            if (tocContainer) tocContainer.appendChild(li);
+        });
+    }
+
     // Mobile Menu Toggle
     const mobileToggle = document.getElementById('mobile-menu-toggle');
     const sidebar = document.querySelector('.sidebar');
