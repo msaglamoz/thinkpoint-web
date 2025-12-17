@@ -52,7 +52,10 @@ h6 {
 /* Sidebar */
 .sidebar {
     width: var(--sidebar-width);
-    background: var(--sidebar-bg);
+    background: rgba(5, 5, 5, 0.6);
+    /* Semi-transparent */
+    backdrop-filter: blur(15px);
+    /* Glass effect like main header */
     height: 100vh;
     position: sticky;
     top: 0;
@@ -184,17 +187,30 @@ h6 {
     position: relative;
 }
 
-/* Background Effect from V2 */
-.main-content::before {
+/* Background Effect from V2 (Enhanced to match Main Site Hero) */
+.legal-layout::before {
     content: '';
     position: fixed;
-    top: 0;
-    left: var(--sidebar-width);
-    right: 0;
-    bottom: 0;
-    background: radial-gradient(circle at top right, rgba(59, 130, 246, 0.05), transparent 40%);
+    top: -20%;
+    right: -10%;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(59, 130, 246, 0.15) 0%, rgba(0, 0, 0, 0) 70%);
     pointer-events: none;
     z-index: -1;
+    animation: pulse-glow 10s infinite alternate;
+}
+
+@keyframes pulse-glow {
+    0% {
+        transform: scale(1);
+        opacity: 0.5;
+    }
+
+    100% {
+        transform: scale(1.2);
+        opacity: 0.8;
+    }
 }
 
 .content-header {
