@@ -187,6 +187,13 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 
     async function renderContent() {
+        // Archive Special Case
+        if (state.currentSection === 'archive') {
+            renderArchive();
+            generateTOC();
+            return;
+        }
+
         ui.container.style.opacity = '0.5';
 
         if (!state.products[state.currentProduct]) {
@@ -306,16 +313,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         `;
     }
 
-    // Modified render logic to catch 'archive'
-    const originalRender = renderContent;
-    renderContent = async function () {
-        if (state.currentSection === 'archive') {
-            renderArchive();
-            generateTOC();
-            return;
-        }
-        await originalRender();
-    }
 
     // --- Cookie Consent Logic ---
     const cookieBanner = document.getElementById('cookie-banner');
