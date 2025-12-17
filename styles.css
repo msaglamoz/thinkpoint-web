@@ -130,6 +130,25 @@ header {
     letter-spacing: -0.02em;
 }
 
+/* Navigation */
+.nav-link {
+    color: var(--text-secondary);
+    text-decoration: none;
+    margin-left: 32px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+    color: var(--text-primary);
+}
+
+.nav-menu {
+    display: flex;
+    align-items: center;
+}
+
 /* Hero Section (V2) */
 .hero {
     position: relative;
