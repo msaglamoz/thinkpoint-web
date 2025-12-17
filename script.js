@@ -27,6 +27,26 @@ document.addEventListener('DOMContentLoaded', () => {
             card.style.setProperty('--mouse-x', `${x}px`);
             card.style.setProperty('--mouse-y', `${y}px`);
         });
+        card.style.setProperty('--mouse-y', `${y}px`);
+    });
+    // Mobile Navigation Logic
+    const hamburger = document.querySelector('.hamburger');
+    const navMenu = document.querySelector('.nav-menu');
+    const navLinks = document.querySelectorAll('.nav-link');
+
+    if (hamburger) {
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+    }
+
+    // Close menu when clicking a link
+    navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            if (hamburger) hamburger.classList.remove('active');
+            if (navMenu) navMenu.classList.remove('active');
+        });
     });
 
     // Secure Contact Modal Logic
@@ -43,18 +63,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Elements
     const statusMsg = document.querySelector('#modal-step-auth .status-message'); // Reuse if needed
+    const form = document.getElementById('contact-form');
+    const formStatus = document.getElementById('form-status');
 
     function openModal(e) {
         if (e) e.preventDefault();
-        modal.classList.add('active');
-        resetModal();
+        if (modal) {
+            modal.classList.add('active');
+            resetModal();
+        }
 
         // Show Auth Step
         if (stepAuth) stepAuth.classList.remove('hidden');
     }
 
     function closeModal() {
-        modal.classList.remove('active');
+        if (modal) modal.classList.remove('active');
     }
 
     // Attach listeners
@@ -63,19 +87,22 @@ document.addEventListener('DOMContentLoaded', () => {
         footerCtaBtn.addEventListener('click', openModal);
     }
 
+    if (heroContactBtn) {
+        heroContactBtn.addEventListener('click', openModal);
+    }
+
     document.querySelectorAll('a[href="#contact"]').forEach(btn => {
         btn.addEventListener('click', openModal);
     });
 
-    closeBtn.addEventListener('click', closeModal);
-    modal.addEventListener('click', (e) => {
-        if (e.target === modal) closeModal();
-    });
+    if (closeBtn) closeBtn.addEventListener('click', closeModal);
+    if (modal) {
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) closeModal();
+        });
+    }
 
     // Handle Form Submission via AJAX (Formspree)
-    const form = document.getElementById('contact-form');
-    const formStatus = document.getElementById('form-status');
-
     async function handleSubmit(event) {
         event.preventDefault();
         const data = new FormData(event.target);
@@ -109,8 +136,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
             }
         }).catch(error => {
-            formStatus.innerText = "Connection Failed.";
-            formStatus.style.color = "red";
+            if (formStatus) {
+                formStatus.innerText = "Connection Failed.";
+                formStatus.style.color = "red";
+            }
         }).finally(() => {
             submitBtn.innerText = originalBtnText;
             submitBtn.disabled = false;
@@ -121,8 +150,6 @@ document.addEventListener('DOMContentLoaded', () => {
         form.addEventListener("submit", handleSubmit);
     }
 
-
-
     // Reset helper
     function resetModal() {
         if (stepAuth) stepAuth.classList.add('hidden');
@@ -130,9 +157,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Clear form status
         if (formStatus) formStatus.innerText = '';
-
-        // Reset steps based on openModal logic (which unhides stepAuth)
-        // This function just hides everything to ensure a clean slate
     }
 });
 

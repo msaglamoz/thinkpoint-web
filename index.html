@@ -25,7 +25,7 @@
     <meta property="twitter:image" content="https://www.thinkpoint.ee/og-image.png">
 
     <link rel="stylesheet" href="styles.css">
-    <link rel="icon" type="image/x-icon" href="favicon.png">
+    <link rel="icon" type="image/png" href="favicon.png">
     <script src="https://accounts.google.com/gsi/client" async defer></script>
 </head>
 
@@ -35,7 +35,12 @@
         <div class="container nav-wrapper">
             <a href="#" class="logo"
                 onclick="window.scrollTo({ top: 0, behavior: 'smooth' }); return false;">ThinkPoint.</a>
-            <nav>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <nav class="nav-menu">
                 <a href="#copoint-platform" class="nav-link">Platform</a>
                 <a href="#use-cases" class="nav-link">Use Cases</a>
                 <a href="#about" class="nav-link">About</a>
@@ -306,7 +311,7 @@
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
 </body>
 
 <!-- Google tag (gtag.js) -->

@@ -64,6 +64,7 @@ ul {
 .text-gradient {
     background: var(--gradient-main);
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
     display: inline-block;
 }
@@ -138,6 +139,85 @@ header {
 
 .nav-link:hover {
     color: var(--text-primary);
+}
+
+/* Hamburger Menu */
+.hamburger {
+    display: none;
+    cursor: pointer;
+}
+
+.hamburger span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: var(--text-primary);
+    margin: 5px 0;
+    transition: all 0.3s ease;
+}
+
+/* Base Nav Styles (Desktop) */
+.nav-menu {
+    display: flex;
+    align-items: center;
+}
+
+/* Mobile Navigation */
+@media (max-width: 768px) {
+    .hamburger {
+        display: block;
+        z-index: 1001;
+    }
+
+    /* Hamburger Animation */
+    .hamburger.active span:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+    }
+
+    .hamburger.active span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .hamburger.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(7px, -6px);
+    }
+
+    .nav-menu {
+        position: fixed;
+        left: -100%;
+        top: 70px;
+        /* Below header */
+        gap: 20px;
+        flex-direction: column;
+        background-color: rgba(5, 5, 5, 0.98);
+        /* Increased opacity */
+        backdrop-filter: blur(15px);
+        width: 100%;
+        height: calc(100vh - 70px);
+        /* Full height */
+        text-align: center;
+        transition: 0.3s ease-in-out;
+        border-bottom: 1px solid var(--card-border);
+        padding: 40px 20px;
+        z-index: 999;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+    }
+
+    .nav-menu.active {
+        left: 0;
+    }
+
+    .nav-link {
+        margin: 10px 0;
+        display: block;
+        font-size: 1.5rem;
+        /* Larger font for mobile */
+        width: 100%;
+        padding: 10px;
+    }
 }
 
 .hero {
@@ -255,6 +335,7 @@ header {
             var(--spotlight-color),
             transparent 40%);
     -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     -webkit-mask-composite: xor;
     mask-composite: exclude;
     pointer-events: none;
@@ -281,6 +362,7 @@ header {
     transition: 0.4s ease;
     z-index: 2;
 }
+
 
 .eco-card:hover::after {
     transform: scaleX(1);
