@@ -184,47 +184,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         window.history.pushState({}, '', url);
     }
 
-    function generateTOC() {
-        // Find all H2s in the rendered container
-        const headers = ui.container.querySelectorAll('h2');
-        if (headers.length === 0) return;
-
-        // Create TOC Container if not exists (or clear it)
-        let tocContainer = document.getElementById('toc-sidebar');
-        if (!tocContainer) {
-            tocContainer = document.createElement('div');
-            tocContainer.id = 'toc-sidebar';
-            tocContainer.className = 'toc-sidebar';
-            // Insert after main content or append to layout
-            // For this layout, let's append to .legal-layout and use order/css to position
-            document.querySelector('.legal-layout').appendChild(tocContainer);
-        }
-
-        let tocHtml = `<h3>On this page</h3><ul>`;
-        headers.forEach((header, index) => {
-            // Ensure ID
-            if (!header.id) header.id = `section-${index}`;
-            tocHtml += `<li><a href="#${header.id}">${header.textContent}</a></li>`;
-        });
-        tocHtml += `</ul>`;
-
-        tocContainer.innerHTML = tocHtml;
-
-        // Add smooth scroll behavior to TOC links
-        tocContainer.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', (e) => {
-                e.preventDefault();
-                const targetId = link.getAttribute('href').substring(1);
-                const targetEl = document.getElementById(targetId);
-                if (targetEl) {
-                    window.scrollTo({
-                        top: targetEl.offsetTop - 100, // Offset for header/margin
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-    }
 
 
     async function renderContent() {
