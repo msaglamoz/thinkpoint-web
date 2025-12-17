@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
             card.style.setProperty('--mouse-x', `${x}px`);
             card.style.setProperty('--mouse-y', `${y}px`);
         });
-        card.style.setProperty('--mouse-y', `${y}px`);
+
     });
     // Mobile Navigation Logic
     const hamburger = document.querySelector('.hamburger');
