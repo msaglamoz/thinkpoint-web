@@ -267,6 +267,17 @@ header {
 }
 
 /* Function */
+.c-s {
+    color: #98c379;
+}
+
+/* String */
+.c-c {
+    color: #5c6370;
+    font-style: italic;
+}
+
+/* Comment */
 
 /* Buttons */
 .cta-group {
