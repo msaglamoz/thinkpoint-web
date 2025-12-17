@@ -298,6 +298,18 @@ h6 {
     color: var(--accent-cyan);
 }
 
+#legal-doc-container a {
+    color: var(--accent-blue);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(59, 130, 246, 0.3);
+    transition: all 0.2s ease;
+}
+
+#legal-doc-container a:hover {
+    color: var(--accent-cyan);
+    border-bottom-color: var(--accent-cyan);
+}
+
 #legal-doc-container hr {
     border: 0;
     border-top: 1px solid var(--card-border);
