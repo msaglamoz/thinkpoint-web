@@ -21,18 +21,23 @@ We automatically collect certain information when you visit, use, or navigate th
 *   **Log Data:** Access times, pages viewed, and the route taken through our application.
 *   **Telemetry:** Anonymous performance metrics from our software agents to ensure stability.
 
-## 3. Legal Basis for Processing
-We process your personal data under the following legal bases:
-*   **Contractual Necessity:** To provide the ThinkPoint and Copoint services you have subscribed to.
-*   **Legitimate Interests:** To improve our security algorithms, prevent fraud, and enhance user experience.
-*   **Legal Obligation:** To comply with tax, accounting, and anti-money laundering regulations.
+## 3. How We Use Data
+We process your personal data for the following purposes:
+*   **Service Delivery:** To authenticate users, process transactions, and deliver the Copoint software functionality.
+*   **Security & Fraud Prevention:** To detect malicious activity, prevent account takeover, and verify identities.
+*   **Platform Improvement:** To analyze usage patterns and improve system performance.
+*   **AI Model Training (Aggregated):** We may use **anonymized and aggregated data** (which does not identify any individual or company) to train and improve our machine learning models, ensuring better fraud detection for all customers.
 
-## 4. Data Sharing and Transfer
-We do not sell your personal data. We may share information with:
-*   **Service Providers:** Third-party vendors who perform services for us (e.g., AWS for hosting, Stripe for payments).
-*   **Legal Authorities:** If required by law or to protect our rights and safety.
+## 4. Data Sharing and International Transfers
+### 4.1. Trusted Service Providers
+We do not sell your personal data. We share information only with trusted third-party sub-processors (e.g., AWS for hosting, Stripe for payments) who are contractually bound to protect your data.
 
-> **Summary:** Your data stays with us. We only share it with trusted infrastructure partners (like cloud providers) or when the law explicitly demands it.
+### 4.2. International Transfers
+We primarily store data within the **European Economic Area (EEA)**. However, where we use service providers located outside the EEA (such as in the United States), we ensure appropriate safeguards are in place, including:
+*   **Standard Contractual Clauses (SCCs):** Approved by the European Commission.
+*   **Data Processing Agreements (DPAs):** Ensuring vendors meet GDPR standards.
+
+> **Summary:** Your data stays with us. We only share it with trusted infrastructure partners. If data leaves the EU, we use legal contracts (SCCs) to keep it safe.
 
 ## 5. Data Retention
 We retain your personal data only for as long as necessary to fulfill the purposes set out in this policy, unless a longer retention period is required by law (such as for tax or accounting purposes).
@@ -48,4 +53,4 @@ Under GDPR, you have the right to:
 To exercise these rights, please contact our Data Protection Officer at **privacy@thinkpoint.ee**.
 
 ## 7. Security of Your Data
-We use administrative, technical, and physical security measures to help protect your personal information. While we have taken reasonable steps to secure the personal information you provide to us, please be aware that despite our efforts, no security measures are perfect or impenetrable, and no method of data transmission can be guaranteed against any interception or other type of misuse.
+We use administrative, technical, and physical security measures (including TLS encryption and SOC2-compliant data centers) to help protect your personal information. While we have taken reasonable steps to secure the personal information you provide to us, please be aware that despite our efforts, no security measures are perfect or impenetrable.
