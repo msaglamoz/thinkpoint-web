@@ -27,6 +27,8 @@ body {
     font-family: 'Inter', sans-serif;
     line-height: 1.6;
     overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 h1,
@@ -37,7 +39,8 @@ h5,
 h6 {
     font-family: 'Outfit', sans-serif;
     color: var(--text-primary);
-    line-height: 1.2;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
 }
 
 a {
