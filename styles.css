@@ -309,7 +309,7 @@ header {
 
 @media (max-width: 768px) {
     .hero {
-        padding-top: 160px;
+        padding-top: 180px !important;
         padding-bottom: 60px;
         min-height: auto;
     }
