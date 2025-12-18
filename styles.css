@@ -546,6 +546,11 @@ header {
     opacity: 1;
 }
 
+.eco-card p {
+    min-height: 80px;
+    /* Forces alignment of the lists below */
+}
+
 /* Original top highlight */
 .eco-card::after {
     content: '';
