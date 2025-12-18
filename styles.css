@@ -269,6 +269,8 @@ header {
     font-family: 'Fira Code', monospace;
     font-size: 0.85rem;
     color: #a1a1aa;
+    white-space: pre;
+    display: block;
 }
 
 .c-k {
