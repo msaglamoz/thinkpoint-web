@@ -321,7 +321,15 @@ header {
     }
 
     .code-abstract {
-        display: none;
+        display: block;
+        width: 100%;
+        margin-bottom: 30px;
+        padding: 12px;
+    }
+
+    .code-abstract code {
+        font-size: 0.75rem;
+        white-space: pre-wrap;
     }
 
     /* Hide code on mobile to save space */
