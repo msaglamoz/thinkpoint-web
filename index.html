@@ -63,16 +63,16 @@
                 <div class="code-abstract">
                     <div class="window-controls"><span></span><span></span><span></span></div>
                     <code>
-                        <span class="c-c">// Copoint Identity SDK</span><br>
-                        <span class="c-k">const</span> <span class="c-v">verification</span> = <span class="c-k">await</span> copoint.<span class="c-f">analyze</span>({<br>
-                        &nbsp;&nbsp;document: <span class="c-s">"passport_scan.jpg"</span>,<br>
-                        &nbsp;&nbsp;biometrics: <span class="c-k">true</span><br>
-                        });<br><br>
-                        <span class="c-c">// Deterministic result</span><br>
-                        <span class="c-k">if</span> (verification.<span class="c-v">riskScore</span> < 0.05) {<br>
-                        &nbsp;&nbsp;<span class="c-k">return</span> <span class="c-v">AuthDecision</span>.<span class="c-f">APPROVED</span>;<br>
-                        }
-                    </code>
+<span class="c-c">// Copoint Identity SDK</span>
+<span class="c-k">const</span> <span class="c-v">verification</span> = <span class="c-k">await</span> copoint.<span class="c-f">analyze</span>({
+  document: <span class="c-s">"passport_scan.jpg"</span>,
+  biometrics: <span class="c-k">true</span>
+});
+
+<span class="c-c">// Deterministic result</span>
+<span class="c-k">if</span> (verification.<span class="c-v">riskScore</span> < 0.05) {
+  <span class="c-k">return</span> <span class="c-v">AuthDecision</span>.<span class="c-f">APPROVED</span>;
+}</code>
                 </div>
 
                 <div class="cta-group">
