@@ -571,6 +571,18 @@ header {
     transform: scaleX(1);
 }
 
+.card-header-with-icon {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.card-icon {
+    width: 24px;
+    height: 24px;
+    opacity: 0.9;
+}
+
 .product-url {
     font-family: monospace;
     font-size: 0.85rem;
